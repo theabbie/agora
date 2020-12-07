@@ -10,8 +10,8 @@ module.exports = class Agora {
       url: 'https://apiprod.agoraimages.com/users.v2/auth/login',
       method: 'POST',
       data: {
-	"email":"abhishek7gg7@gmail.com",
-	"password":"SNh6KpBJtxgA6ns"
+	"email": this.username,
+	"password": this.password
       }
     });
     this.token = token.data.accessToken;
@@ -24,7 +24,7 @@ module.exports = class Agora {
     var profile = await axios({
        url: 'https://apiprod.agoraimages.com/users.v2/user/profile',
        headers: {
-         authorization: 'Bearer ' + this.token;
+         authorization: 'Bearer ' + this.token
        }
      });
     return profile.data;

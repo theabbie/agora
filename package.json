@@ -1,11 +1,12 @@
 {
   "name": "agora-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Unofficial Agora Images API",
   "main": "index.js",
   "scripts": {
     "test": "echo 'working'"
   },
+  "funding": "https://theabbie.github.io",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/theabbie/agora.git"
