@@ -1,0 +1,26 @@
+{
+  "name": "agora-api",
+  "version": "1.0.0",
+  "description": "Unofficial Agora Images API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'working'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theabbie/agora.git"
+  },
+  "keywords": [
+    "agora",
+    "theabbie"
+  ],
+  "author": "theabbie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theabbie/agora/issues"
+  },
+  "homepage": "https://github.com/theabbie/agora#readme",
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
+}
