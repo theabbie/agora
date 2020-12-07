@@ -1,4 +1,5 @@
 var axios = require("axios");
+var fs = require("fs");
 
 module.exports = class Agora {
   constructor() {}
@@ -17,7 +18,7 @@ module.exports = class Agora {
     this.token = token.data.accessToken;
     this.rft = token.data.refreshToken;
     this.uid = token.data.userId;
-    this.token = token.data.userId;
+    return this.token;
   }
 
   async getProfile() {
@@ -34,5 +35,43 @@ module.exports = class Agora {
     this.token = token;
     var uid = await this.getProfile();
     this.uid = uid.userId;
+  }
+
+  async upload(path,title) {
+    var up_url = await axios({
+      url: 'https://apiprod.agoraimages.com/media.v1/medias/upload',
+      method: 'POST',
+      data: {
+	"authorId": this.uid,
+	"location": {
+	   "country":"",
+	   "countryCode":"",
+	   "latitude": 0,
+	   "longitude": 0
+	},
+	"locationDescription":"",
+	"metaData": {
+	  "device":"Xiaomi Redmi Note 7 Pro",
+	  "height":4000,
+	  "width":3000
+	},
+	"platform":"ANDROID",
+	"title": title || "Image",
+	"userTags":""
+      },
+      headers: {
+        authorization: 'Bearer ' + this.token
+      }
+    });
+    var file = fs.createReadStream(path);
+    var result = await axios({
+      url: up_url.signedUrl,
+      method: 'PUT',
+      data: file,
+      headers: {
+        'Content-Type': 'image/*'
+      }
+    ));
+    return result.data;
   }
 }
