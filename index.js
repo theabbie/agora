@@ -43,12 +43,6 @@ module.exports = class Agora {
       method: 'POST',
       data: {
 	"authorId": this.uid,
-	"location": {
-	   "country":"",
-	   "countryCode":"",
-	   "latitude": 0,
-	   "longitude": 0
-	},
 	"locationDescription":"",
 	"metaData": {
 	  "device":"Xiaomi Redmi Note 7 Pro",
@@ -65,13 +59,13 @@ module.exports = class Agora {
     });
     var file = fs.createReadStream(path);
     var result = await axios({
-      url: up_url.signedUrl,
+      url: up_url.data.signedUrl,
       method: 'PUT',
       data: file,
       headers: {
         'Content-Type': 'image/*'
       }
-    ));
+    });
     return result.data;
   }
 }
